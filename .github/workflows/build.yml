@@ -1,6 +1,36 @@
 name: Build image for Release channel
 on:
   workflow_dispatch:
+    inputs:
+
+      build_system:
+        type: choice
+        description: 'Build on'
+        required: false
+        options:
+        - armbian
+        - debos
+        - rbuild
+        default: rbuild
+
+      build_base:
+        type: choice
+        description: 'Base Distribution'
+        required: false
+        options:
+        - debian
+        - ubuntu
+        default: debian
+
+      build_flavour:
+        type: choice
+        description: 'Flavour'
+        required: false
+        options:
+        - cli
+        - kde
+        - xfce
+        default: cli
 
 jobs:
   prepare_release:
@@ -26,9 +56,9 @@ jobs:
     strategy:
       matrix:
         boards: [rock-pi-4b]
-        build_systems: [rbuild]
-        distros: [debian]
-        flavors: [cli, xfce]
+        build_systems: ["${{inputs.build_system}}"]
+        distros: ["${{inputs.build_base}}"]
+        flavors: ["${{inputs.build_flavour}}"]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
