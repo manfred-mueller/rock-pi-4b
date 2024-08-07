@@ -28,14 +28,7 @@ jobs:
         boards: [rock-pi-4b]
         build_systems: [rbuild]
         distros: [debian, ubuntu]
-        flavors: [kde, cli]
-        exclude:
-          - build_systems: debos
-            distros: debian
-            flavors: cli
-          - build_systems: debos
-            distros: ubuntu
-            flavors: kde
+        flavors: [cli]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
