@@ -27,8 +27,8 @@ jobs:
       matrix:
         boards: [rock-pi-4b]
         build_systems: [rbuild]
-        distros: [debian, ubuntu]
-        flavors: [cli]
+        distros: [ubuntu]
+        flavors: [cli, xfce]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
